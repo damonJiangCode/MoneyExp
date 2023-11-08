@@ -2,20 +2,14 @@ const { app, Menu, MenuItem, BrowserWindow } = require('electron')
 const { dir } = require('node:console')
 const path = require('node:path')
 
-
-// check whether it is MAC
 const isMac = process.platform === 'darwin'
 
-
-// custom menu template
 const menuTemplate = [
-  // menu item: PAWN
   {
     label: 'PAWN',
     submenu: [
-      // submenu item: Client
       new MenuItem({
-        label: 'Client',
+        label: 'Clients',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -24,9 +18,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Expire Tickets
       new MenuItem({
-        label: 'Expire Ticket',
+        label: 'Expire Tickets',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -35,13 +28,11 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      //  submenu item: Quit
       {
         role: 'quit'
       }
     ]
   },
-  // menu item: LAYWAY
   {
     label: 'LAYWAY',
     submenu: [
@@ -57,13 +48,11 @@ const menuTemplate = [
       // }),
     ]
   },
-  // menu item: REPORTS
   {
-    label: 'REPORT',
+    label: 'REPORTS',
     submenu: [
-      // submenu item: Overdue Report
       new MenuItem({
-        label: 'Overdue Report',
+        label: 'Overdue Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -72,9 +61,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Pawn Report
       new MenuItem({
-        label: 'Pawn Report',
+        label: 'Pawn Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -83,9 +71,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Buy Back Report
       new MenuItem({
-        label: 'Buy Back Report',
+        label: 'Buy Back Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -94,9 +81,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Interest Report
       new MenuItem({
-        label: 'Interest Report',
+        label: 'Interest Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -105,9 +91,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Summary Report
       new MenuItem({
-        label: 'Summary Report',
+        label: 'Summary Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -116,9 +101,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: XML Report
       new MenuItem({
-        label: 'XML Report',
+        label: 'XML Reports',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -131,11 +115,10 @@ const menuTemplate = [
   },
   // menu item: SETTING
   {
-    label: 'SETTING',
+    label: 'SETTINGS',
     submenu: [
-      // submenu item: Employee
       new MenuItem({
-        label: 'Employee',
+        label: 'Employees',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -143,9 +126,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: IDType
       new MenuItem({
-        label: 'IDType',
+        label: 'IDTypes',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -153,9 +135,8 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Code
       new MenuItem({
-        label: 'Code',
+        label: 'Codes',
         click: () => {
           // Custom action when this item is clicked
         },
@@ -163,7 +144,6 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
-      // submenu item: Printer
       new MenuItem({
         label: 'Printer',
         click: () => {
@@ -176,6 +156,42 @@ const menuTemplate = [
     ]
   }
 ]
+if (isMac) {
+  menuTemplate.unshift(
+    {
+      label: app.name,
+      submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { role: 'services' },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideOthers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        // Add your edit menu items here
+      ]
+    },
+    {
+      role: 'viewMenu'
+    },
+    {
+      label: 'Window',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'zoom' },
+        { type: 'separator' },
+        { role: 'front' }
+      ]
+    }
+  );
+}
 const menu = Menu.buildFromTemplate(menuTemplate)
 Menu.setApplicationMenu(menu)
 

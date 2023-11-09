@@ -5,13 +5,16 @@ const path = require('node:path')
 const isMac = process.platform === 'darwin'
 
 const menuTemplate = [
+  // PAWN
   {
     label: 'PAWN',
     submenu: [
       new MenuItem({
         label: 'Clients',
         click: () => {
-          // Custom action when this item is clicked
+          const clientWindow = new BrowserWindow({ width: 888, height: 666 });
+          clientWindow.loadFile(path.join(__dirname, '../FrontEnd/clients.html'));
+          clientWindow.setMenu(null); 
         },
         accelerator: process.platform === 'darwin' ? 'Cmd+Alt+C' : 'Ctrl+Alt+C', // Optional keyboard shortcut
         enabled: true, // Enable or disable the menu item
@@ -28,11 +31,22 @@ const menuTemplate = [
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
       }),
+      new MenuItem({
+        label: 'Stolen Items',
+        click: () => {
+          // Custom action when this item is clicked
+        },
+        accelerator: process.platform === 'darwin' ? 'Cmd+Alt+S' : 'Ctrl+Alt+S', // Optional keyboard shortcut
+        enabled: true, // Enable or disable the menu item
+        visible: true, // Show or hide the menu item
+        // role: customRole, // Assign your custom role here
+      }),
       {
         role: 'quit'
       }
     ]
   },
+  // LAYWAY
   {
     label: 'LAYWAY',
     submenu: [
@@ -48,6 +62,7 @@ const menuTemplate = [
       // }),
     ]
   },
+  // REPORTS
   {
     label: 'REPORTS',
     submenu: [
@@ -92,11 +107,11 @@ const menuTemplate = [
         // role: customRole, // Assign your custom role here
       }),
       new MenuItem({
-        label: 'Summary Reports',
+        label: 'Total Reports',
         click: () => {
           // Custom action when this item is clicked
         },
-        accelerator: process.platform === 'darwin' ? 'Cmd+Alt+S' : 'Ctrl+Alt+S', // Optional keyboard shortcut
+        accelerator: process.platform === 'darwin' ? 'Cmd+Alt+T' : 'Ctrl+Alt+T', // Optional keyboard shortcut
         enabled: true, // Enable or disable the menu item
         visible: true, // Show or hide the menu item
         // role: customRole, // Assign your custom role here
@@ -113,7 +128,7 @@ const menuTemplate = [
       }),
     ]
   },
-  // menu item: SETTING
+  // SETTING
   {
     label: 'SETTINGS',
     submenu: [
@@ -197,16 +212,16 @@ Menu.setApplicationMenu(menu)
 
 
 const createWindow = () => {
-    const win = new BrowserWindow({
-      width: 800,
-      height: 600,
-      webPreferences: {
-        preload: path.join(__dirname, 'preload.js')
-      }
-    })
-  
-    win.loadFile(path.join(__dirname, '../FrontEnd/index.html'))
-  }
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    // webPreferences: {
+    //   preload: path.join(__dirname, 'preload.js')
+    // }
+  })
+
+  win.loadFile(path.join(__dirname, '../FrontEnd/index.html'))
+}
 
 app.whenReady().then(() => {
     createWindow()

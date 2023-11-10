@@ -1,90 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transaction Interface</title>
-<style>
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients</title>
+    <!-- <script>
+      function showTab(tabNumber) {
+        const allTabs = document.querySelectorAll('.tab');
+        const allContents = document.querySelectorAll('.tab-content');
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
+        allTabs.forEach(tab => tab.classList.remove('selected'));
+        const clickedTab = document.querySelector(`.tab:nth-child(${tabNumber})`);
+        clickedTab.classList.add('selected');
 
-  table, th, td {
-    border: 1px solid black;
-  }
+        allContents.forEach(content => content.classList.remove('active'));
+        const selectedContent = document.getElementById(`content${tabNumber}`);
+        selectedContent.classList.add('active');
+      }
 
-  th, td {
-    padding: 5px;
-    text-align: left;
-  }
+      function search() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        console.log("SEARCHING WORK!");
+        // Use firstName and lastName for search functionality
+        // Add your code here
+      }
 
-  input[type="text"], button {
-    margin: 5px 0;
-  }
-</style>
+      function clearFields() {
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        console.log("CLEAR WORKS!");
+    }
+    </script> -->
+    <style>
+        body, html {
+          text-align: center;
+          height: 100%; 
+          margin: 0;
+        }
+
+        .container {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        .top {
+          background-color: #f0f0f0; 
+          flex-direction: column;
+          flex: 1;
+        }
+        .bottom {
+          flex: 4;
+          background-color: #e0e0e0; 
+        }
+        .name-search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: inline-block;
+        }
+        .name-search input,
+        .name-search button {
+            margin: 5px;
+        }
+        
+    </style>
 </head>
 <body>
-<div class="container">
-  <h2>Transaction Details</h2>
+    <div class="container">
 
-  <label for="lastName">Last Name:</label>
-  <input type="text" id="lastName" name="lastName"><br>
 
-  <label for="firstName">First Name:</label>
-  <input type="text" id="firstName" name="firstName"><br>
 
-  <button>Search</button>
+        <div class="top">
+          <div class="name-search">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name">
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+            <button onclick="search()">Search</button>
+            <button onclick="clearFields()">Clear</button><br>
+          </div>
+          <!-- <button onclick="buttonClick(1)">Item Search</button>
+          <button onclick="buttonClick(2)">Ticket Search</button>
+          <button onclick="buttonClick(3)">Payment Search</button> -->
+        </div>
+          <!-- <div class="other-search-container">
+            <button onclick="buttonClick(1)">Ticket Search</button>
+            <button onclick="buttonClick(2)">Item Search</button>
+            <button onclick="buttonClick(3)">Payment</button>
+          </div> -->
 
-  <table>
-    <tr>
-      <th>TRANS#</th>
-      <th>TRANSDAT</th>
-      <th>LOC</th>
-      <th>REMARK</th>
-      <th>DUEDATE</th>
-      <th>PAWNS</th>
-      <th>INTS</th>
-      <th>TOTAL$</th>
-      <th>INTERE</th>
-    </tr>
-    <tr>
-      <td>934795</td>
-      <td>2023-11-06</td>
-      <td>CP12</td>
-      <td>PHONE N/C</td>
-      <td>2023-12-06</td>
-      <td>161</td>
-      <td>48.3</td>
-      <td>209.3</td>
-      <td>99-99-99</td>
-    </tr>
-  </table>
 
-  <table>
-    <tr>
-      <th>ITEMNO</th>
-      <th>QTY</th>
-      <th>DESCRIPTION</th>
-    </tr>
-    <tr>
-      <td>846470</td>
-      <td>1</td>
-      <td>PHONE-CELLULAR IMEI: 35110922 TRADEMARK MODELNO A2402</td>
-    </tr>
-  </table>
+        
+        <div class="bottom">
+          <ul class="tabs">
+            <li data-tab="./test1.html">Tab 1</li>
+            <li data-tab="./test2.html">Tab 2</li>
+          </ul>
+          <div id="content">
+            <p>WAITING FOR REDIRECTING!</p>
+          </div>
+          <script>
+            document.querySelectorAll('.tabs li').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabFile = tab.dataset.tab;
+                    fetch(tabFile)
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('content').innerHTML = data;
+                        });
+                });
+            });
+        </script>
+        </div>
 
-  <!-- You would replace this with actual logic to handle the item addition -->
-  <button>Add Item</button>
-  <button>Edit Item</button>
-  <button>Remove Item</button>
-</div>
+
+
+    </div>
+
+
 </body>
 </html>

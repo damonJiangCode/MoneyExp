@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients</title>
+    <script src="../BackEnd/clients.js"></script>
+    <link rel="stylesheet" href="clients.css">
+</head>
+
+<body>
+    <div class="top-part">
+        <div class="search-container">
+          <input type="text" id="lastName" placeholder="Last Name">
+          <input type="text" id="firstName" placeholder="First Name">
+          <button onclick="search()">Search</button>
+          <button onclick="clearFields()">Clear</button>
+        </div>
+        <br/>
+        <div class="other-search-container">
+          <button onclick="buttonClick(1)">Ticket Search</button>
+          <button onclick="buttonClick(2)">Item Search</button>
+          <button onclick="buttonClick(3)">Payment Search</button>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    
+    <div class="bottom-part">
+        <ul class="tabs">
+            <li class="tab selected" onclick="showTab(1)">Client</li>
+            <li class="tab" onclick="showTab(2)">Transaction</li>
+            <li class="tab" onclick="showTab(3)">History</li>
+        </ul>
+
+        <div id="content"></div>
+    </div>
+</body>
+
+</html>

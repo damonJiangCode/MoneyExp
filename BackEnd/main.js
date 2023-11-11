@@ -3,6 +3,7 @@ const { dir } = require('node:console')
 const path = require('node:path')
 
 const isMac = process.platform === 'darwin'
+let hasClientsWindow = 0
 
 const menuTemplate = [
   // PAWN
@@ -12,14 +13,18 @@ const menuTemplate = [
       new MenuItem({
         label: 'Clients',
         click: () => {
-          const clientWindow = new BrowserWindow({ width: 888, height: 666 });
-          clientWindow.loadFile(path.join(__dirname, '../FrontEnd/clients.html'));
-          clientWindow.setMenu(null); 
+          if (hasClientsWindow == 0) {
+            const clientsWindow = new BrowserWindow({ width: 888, height: 666 })
+            clientsWindow.loadFile(path.join(__dirname, '../FrontEnd/page/clients.html'))
+            clientsWindow.setMenu(null)
+            hasClientsWindow = 1
+
+            clientsWindow.on('closed', () => {hasClientsWindow = 0;})
+          }
         },
         accelerator: process.platform === 'darwin' ? 'Cmd+Alt+C' : 'Ctrl+Alt+C', // Optional keyboard shortcut
-        enabled: true, // Enable or disable the menu item
+        enabled: hasClientsWindow == 0,
         visible: true, // Show or hide the menu item
-        // role: customRole, // Assign your custom role here
       }),
       new MenuItem({
         label: 'Expire Tickets',
@@ -220,7 +225,7 @@ const createWindow = () => {
     // }
   })
 
-  win.loadFile(path.join(__dirname, '../FrontEnd/index.html'))
+  win.loadFile(path.join(__dirname, '../FrontEnd/page/index.html'))
 }
 
 app.whenReady().then(() => {

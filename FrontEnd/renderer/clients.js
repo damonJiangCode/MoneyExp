@@ -1,9 +1,9 @@
-fetch("./clients_client.html")
+fetch("../page/client.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("content").innerHTML = data
     })
-    .catch(error => console.error('Error fetching clients_client.html: ', error));
+    .catch(error => console.error('Error fetching client.html: ', error));
 
 function showTab(num) {
     // set default clicked and content
@@ -14,11 +14,11 @@ function showTab(num) {
     // choose HTML
     let tabContent;
     if (num==1) {
-    tabContent = "./clients_client.html"
+    tabContent = "../page/client.html"
     } else if (num==2) {
-    tabContent = "./clients_transaction.html"
+    tabContent = "../page/transaction.html"
     } else {
-    tabContent = "./clients_history.html"
+    tabContent = "../page/history.html"
     }
     fetch(tabContent)
         .then(response => response.text())

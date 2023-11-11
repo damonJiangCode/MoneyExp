@@ -1,12 +1,72 @@
--- SQLite
--- CREATE TABLE clients (
+-- DROP TABLE PROVINCE;
+-- DROP TABLE eyeColor;
+-- DROP TABLE hairColor;
+
+-- CREATE TABLE HAIRCOLOR (
 --     id INTEGER PRIMARY KEY,
---     name TEXT,
---     email TEXT
+--     color TEXT
+-- );
+-- INSERT INTO HAIRCOLOR (color) VALUES
+--     ('Auburn'),
+--     ('Bald'),
+--     ('Black'),
+--     ('Blonde'),
+--     ('Brown'),
+--     ('Dark Brown'),
+--     ('Dyed'),
+--     ('Gray'),
+--     ('Graying'),
+--     ('Light Brown'),
+--     ('Red'),
+--     ('Sandy'),
+--     ('UNKNOWN');
+
+
+-- CREATE TABLE EYECOLOR (
+--     id INTEGER PRIMARY KEY,
+--     color TEXT
+-- );
+-- INSERT INTO EYECOLOR (color) VALUES
+--     ('Black'),
+--     ('Blue'),
+--     ('Brown'),
+--     ('Green'),
+--     ('Grey'),
+--     ('Hazel'),
+--     ('OTHER');
+
+
+-- CREATE TABLE PROVINCE (
+--     ID INTEGER PRIMARY KEY,
+--     provinceCode TEXT,
+--     provinceName TEXT
+-- );
+-- INSERT INTO PROVINCE (provinceCode, provinceName) VALUES
+--     ('AB', 'Alberta'),
+--     ('BC', 'British Columbia'),
+--     ('MB', 'Manitoba'),
+--     ('NB', 'New Brunswick'),
+--     ('NL', 'Newfoundland and Labrador'),
+--     ('NS', 'Nova Scotia'),
+--     ('ON', 'Ontario'),
+--     ('PE', 'Prince Edward Island'),
+--     ('QC', 'Quebec'),
+--     ('SK', 'Saskatchewan'),
+--     ('NT', 'Northwest Territories'),
+--     ('NU', 'Nunavut'),
+--     ('YT', 'Yukon');
+
+
+-- CREATE TABLE CITY (
+--     ID INTEGER PRIMARY KEY,
+--     cityName TEXT,
+--     provinceName TEXT,
+--     provinceCode TEXT
 -- );
 
 
--- INSERT INTO clients(id, name, email) 
--- VALUES (, "SAM", "aaa");
 
--- SELECT * FROM clients where id=12222;
+
+SELECT CITY.provinceName
+FROM CITY
+GROUP BY CITY.provinceName;

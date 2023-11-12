@@ -66,7 +66,16 @@
 
 
 
-
-SELECT CITY.provinceName
-FROM CITY
-GROUP BY CITY.provinceName;
+-- CREATE TABLE IDTYPE (
+--     ID INTEGER PRIMARY KEY,
+--     idType TEXT
+-- );
+-- INSERT INTO IDTYPE (idType) VALUES
+--     ('Birth Certificate'),
+--     ('Citizenship'),
+--     ('Driver License'),
+--     ('Firearms License'),
+--     ('Health Card'),
+--     ('Passport'),
+--     ('SIN'),
+--     ('Other');

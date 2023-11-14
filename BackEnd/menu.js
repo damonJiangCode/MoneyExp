@@ -1,7 +1,5 @@
-const { Menu, MenuItem, } = require('electron');
-const path = require('node:path');
+const { Menu, MenuItem } = require('electron');
 const windowsModule = require('./windows');
-
 
 function createMenu() {
     // const isMac = process.platform === 'darwin';
@@ -17,6 +15,7 @@ function createMenu() {
               accelerator: process.platform === 'darwin' ? 'Cmd+Alt+C' : 'Ctrl+Alt+C', 
               enabled: true,
               visible: true, 
+              devTools: true
             }),
             new MenuItem({
               label: 'Expire Tickets',

@@ -1,3 +1,5 @@
+// menu.js
+
 const { Menu, MenuItem } = require('electron');
 const windowsModule = require('./windows');
 
